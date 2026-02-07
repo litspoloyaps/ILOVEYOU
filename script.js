@@ -7,13 +7,14 @@ const heartsRow = document.querySelectorAll(".hearts-row");
 const heartBtn = document.getElementById("heart-btn");
 
 function toggleEnvelope() {
-  
-  innerPolygon.classList.toggle("inner-open");
-  outer.classList.toggle("outer-open");
-  heartBtn.classList.toggle("hide");
-  closeBtn.classList.toggle("show");
-  message1.classList.toggle("hide");
-  message2.classList.toggle("show");
-  heartsRow.forEach(element => element.classList.toggle("animated"));
-  
+  innerPolygon?.classList.toggle("inner-open");
+  outer?.classList.toggle("outer-open");
+
+  heartBtn?.classList.toggle("hide");
+  closeBtn?.classList.toggle("show");
+
+  message1?.classList.toggle("hide");
+  message2?.classList.toggle("show");
+
+  heartsRow.forEach(el => el.classList.toggle("animated"));
 }
