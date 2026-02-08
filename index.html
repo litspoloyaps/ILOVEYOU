@@ -2,202 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LOVE-LETTER-FOR-YOU</title>
+  <title>LOVE-LETTER-FOR-YOU 💕</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     }
-
-    .container {
-      background: rgba(255, 255, 255, 0.95);
+    .card {
+      background: rgba(255,255,255,0.95);
       padding: 30px;
-      border-radius: 20px;
+      border-radius: 24px;
+      text-align: center;
       width: 90%;
       max-width: 520px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1.5s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
-
-    h1 {
-      color: #e63946;
-      margin-bottom: 10px;
-    }
-
     input, select {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
       border-radius: 20px;
-      border: 1px solid #ccc;
-      outline: none;
+      border: 1px solid #ddd;
       font-size: 1em;
       text-align: center;
+      outline: none;
     }
-
-    .letter {
-      font-size: 1.05em;
-      color: #333;
-      min-height: 140px;
-      margin-top: 15px;
-      white-space: pre-line;
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
+    a.button {
+      display: block;
+      margin-top: 18px;
+      padding: 14px;
       background: #e63946;
       color: #fff;
-      font-size: 1em;
-      cursor: pointer;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 1.05em;
       transition: 0.3s;
-      width: 100%;
     }
-
-    button:hover {
-      background: #c71f2d;
-      transform: scale(1.05);
-    }
-
-    .heart {
-      position: absolute;
-      color: rgba(255, 0, 76, 0.6);
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(1); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      margin-top: 15px;
-      font-size: 0.85em;
-      color: #777;
-    }
+    a.button:hover { background: #c71f2d; transform: scale(1.05);}
   </style>
 </head>
-
 <body>
-
-  <div class="container">
+  <div class="card">
     <h1>LOVE-LETTER-FOR-YOU 💕</h1>
-
-    <!-- NAME INPUT -->
-    <input type="text" id="name" placeholder="Your name here ✨">
-
-    <!-- MODE SELECT -->
+    <input type="text" id="name" placeholder="Your name ✨">
     <select id="mode">
       <option value="valentine">💘 Valentine’s</option>
       <option value="anniversary">💞 Anniversary</option>
       <option value="confession">💗 Confession</option>
     </select>
-
-    <button onclick="unlock()">Unlock My Heart 💌</button>
-
-    <div id="letter" class="letter"></div>
-
-    <footer>Made with love ✨</footer>
+    <a href="#" class="button" id="unlockLink">Unlock My Heart 💌</a>
   </div>
 
   <script>
-    let index = 0;
-    let finalMessage = "";
+    const unlockLink = document.getElementById("unlockLink");
+    const modeSelect = document.getElementById("mode");
+    const nameInput = document.getElementById("name");
 
-    // 🔗 CHANGE THESE LINKS
-    const links = {
-      valentine: "",
-      anniversary: "",
-      confession: ""
-    };
-
-    function unlock() {
-      const name = document.getElementById("name").value || "You";
-      const mode = document.getElementById("mode").value;
-
-      if (mode === "valentine") {
-        finalMessage = `Hi ${name},
-
-Happy Valentine’s Day 💘
-You make my heart smile in ways I never knew were possible.
-Every moment with you feels special.
-
-Today and always,
-I choose you 🤍`;
-      }
-
-      if (mode === "anniversary") {
-        finalMessage = `Hi ${name},
-
-Happy Anniversary 💞
-Thank you for every memory, every laugh, and every quiet moment.
-I’m grateful for us.
-
-Forever yours 🤍`;
-      }
-
-      if (mode === "confession") {
-        finalMessage = `Hi ${name},
-
-I’ve been wanting to tell you this…
-I like you.
-Being around you makes everything better.
-
-That’s my heart 🤍`;
-      }
-
-      // show letter
-      document.getElementById("letter").innerHTML = "";
-      index = 0;
-      typeEffect();
-
-      // open link
-      window.open(links[mode], "_blank");
+    function updateLink() {
+      const mode = modeSelect.value;
+      const name = encodeURIComponent(nameInput.value || "You");
+      unlockLink.href = mode + ".html?name=" + name;
     }
 
-    function typeEffect() {
-      if (index < finalMessage.length) {
-        document.getElementById("letter").innerHTML += finalMessage.charAt(index);
-        index++;
-        setTimeout(typeEffect, 40);
-      }
-    }
+    modeSelect.addEventListener("change", updateLink);
+    nameInput.addEventListener("input", updateLink);
 
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 12 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createHeart, 400);
+    // initialize link
+    updateLink();
   </script>
-
 </body>
 </html>
