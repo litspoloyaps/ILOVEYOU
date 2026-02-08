@@ -103,9 +103,6 @@
   <div class="container">
     <h1>LOVE-LETTER-FOR-YOU 💕</h1>
 
-    <!-- PASSWORD LOCK -->
-    <input type="password" id="password" placeholder="Enter the secret password 💖">
-
     <!-- NAME INPUT -->
     <input type="text" id="name" placeholder="Your name here ✨">
 
@@ -116,7 +113,7 @@
       <option value="confession">💗 Confession</option>
     </select>
 
-    <button onclick="unlock()">Unlock My Heart 🔐</button>
+    <button onclick="unlock()">Unlock My Heart 💌</button>
 
     <div id="letter" class="letter"></div>
 
@@ -124,27 +121,26 @@
   </div>
 
   <script>
-    const SECRET_PASSWORD = "love"; // change this password
-
     let index = 0;
     let finalMessage = "";
 
+    // 🔗 CHANGE THESE LINKS
+    const links = {
+      valentine: "https://www.youtube.com/watch?v=lp-EO5I60KA",
+      anniversary: "https://www.youtube.com/watch?v=RgKAFK5djSk",
+      confession: "https://www.youtube.com/watch?v=JGwWNGJdvx8"
+    };
+
     function unlock() {
-      const password = document.getElementById("password").value;
       const name = document.getElementById("name").value || "You";
       const mode = document.getElementById("mode").value;
-
-      if (password !== SECRET_PASSWORD) {
-        alert("Wrong password 💔");
-        return;
-      }
 
       if (mode === "valentine") {
         finalMessage = `Hi ${name},
 
 Happy Valentine’s Day 💘
 You make my heart smile in ways I never knew were possible.
-Every moment with you feels special, and every thought of you feels warm.
+Every moment with you feels special.
 
 Today and always,
 I choose you 🤍`;
@@ -155,24 +151,28 @@ I choose you 🤍`;
 
 Happy Anniversary 💞
 Thank you for every memory, every laugh, and every quiet moment.
-Time feels softer and sweeter because of you.
+I’m grateful for us.
 
-Forever grateful for us 🤍`;
+Forever yours 🤍`;
       }
 
       if (mode === "confession") {
         finalMessage = `Hi ${name},
 
-I’ve been holding this in for a while…
-I like you. More than I probably should.
-Being around you makes everything feel lighter and brighter.
+I’ve been wanting to tell you this…
+I like you.
+Being around you makes everything better.
 
-I just wanted you to know 🤍`;
+That’s my heart 🤍`;
       }
 
+      // show letter
       document.getElementById("letter").innerHTML = "";
       index = 0;
       typeEffect();
+
+      // open link
+      window.open(links[mode], "https://litspoloyaps.github.io/prank/");
     }
 
     function typeEffect() {
