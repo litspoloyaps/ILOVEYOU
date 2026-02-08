@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LOVELETTERFORYOU</title>
+  <title>LOVE-LETTER-FOR-YOU 💌</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
@@ -19,7 +19,6 @@
       --pink-lt: #FFB6C1;
       --purple-dk: #98006A;
       --neutral-md: #999;
-      --neutral-lt: #fff;
     }
 
     body {
@@ -40,12 +39,6 @@
       text-shadow: 1px 2px 2px white;
     }
 
-    p {
-      margin-top: 15px;
-      font-size: 18px;
-    }
-
-    /* ENVELOPE */
     .envelope-container {
       position: relative;
       width: 350px;
@@ -76,7 +69,6 @@
       border: 1px solid var(--neutral-md);
       border-radius: 5px;
       box-shadow: 0 10px 30px rgba(0,0,0,.3);
-      z-index: 1;
     }
 
     .envelope-flap {
@@ -116,10 +108,8 @@
     polygon {
       fill: white;
       stroke: #999;
-      stroke-width: 1;
     }
 
-    /* HEART BUTTON */
     .heart-btn {
       position: absolute;
       bottom: 20px;
@@ -127,13 +117,7 @@
       font-size: 60px;
       color: var(--red-md);
       cursor: pointer;
-      transition: transform .2s ease;
       z-index: 1000;
-    }
-
-    .heart-btn:hover {
-      transform: scale(1.1);
-      color: var(--purple-dk);
     }
 
     .heart-btn-text {
@@ -151,12 +135,10 @@
       left: 10px;
       padding: 8px 16px;
       font-size: 10px;
-      text-transform: uppercase;
       background: var(--pink-lt);
       border-radius: 5px;
       display: none;
       cursor: pointer;
-      z-index: 10000;
     }
 
     .close-btn.show {
@@ -167,7 +149,7 @@
       display: none;
     }
 
-    /* FLOATING LOVE LETTER TEXT */
+    /* FLOATING SWEET WORDS */
     .floating-hearts {
       position: absolute;
       top: 60px;
@@ -185,7 +167,7 @@
     .love-text {
       font-family: "Lobster", cursive;
       font-size: 18px;
-      color: var(--red-md);
+      color: var(--purple-dk);
       text-shadow: 1px 1px 2px white;
     }
 
@@ -194,99 +176,95 @@
     }
 
     @keyframes floatLove {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-120px);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .envelope-container {
-        transform: scale(0.9);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-120px); }
     }
   </style>
 </head>
 
 <body>
-  <article>
-    <div class="envelope-container">
+<article>
+  <div class="envelope-container">
 
-      <div class="message message-1" id="message-1">
-        <h1>LOVE-LETTER-FOR-YOU 💌</h1>
-        <p>Click the heart for a surprise</p>
-      </div>
-
-      <div class="message message-2" id="message-2">
-        <h2>Lots of love 💖</h2>
-      </div>
-
-      <button class="close-btn" id="close-btn" onclick="toggleEnvelope()">Close</button>
-
-      <div class="heart-btn" id="heart-btn" onclick="toggleEnvelope()">
-        ❤
-        <div class="heart-btn-text">click</div>
-      </div>
-
-      <!-- FLOATING TEXT -->
-      <div class="floating-hearts">
-        <div class="hearts-row" id="hearts">
-          <span class="love-text">LOVE LETTER</span>
-          <span class="love-text">LOVE LETTER</span>
-          <span class="love-text">LOVE LETTER</span>
-        </div>
-      </div>
-
-      <div class="envelope-flap">
-        <svg class="inner">
-          <polygon points="5,0 345,0 175,145"></polygon>
-        </svg>
-        <svg class="outer" id="outer">
-          <polygon points="5,150 345,150 175,0"></polygon>
-        </svg>
-      </div>
-
-      <div class="envelope-base"></div>
+    <div class="message message-1" id="message-1">
+      <h1>LOVE-LETTER-FOR-YOU 💌</h1>
+      <p>Click the heart for a surprise</p>
     </div>
-  </article>
 
-  <script>
-    const inner = document.querySelector(".inner");
-    const outer = document.getElementById("outer");
-    const heartBtn = document.getElementById("heart-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const message1 = document.getElementById("message-1");
-    const message2 = document.getElementById("message-2");
-    const hearts = document.getElementById("hearts");
+    <div class="message message-2" id="message-2">
+      <h2>Just for you 💖</h2>
+    </div>
 
-    let opened = false;
+    <button class="close-btn" id="close-btn" onclick="toggleEnvelope()">Close</button>
 
-    function toggleEnvelope() {
-      inner.classList.toggle("inner-open");
-      outer.classList.toggle("outer-open");
+    <div class="heart-btn" id="heart-btn" onclick="toggleEnvelope()">
+      ❤
+      <div class="heart-btn-text">click</div>
+    </div>
 
-      heartBtn.classList.toggle("hide");
-      closeBtn.classList.toggle("show");
+    <div class="floating-hearts">
+      <div class="hearts-row" id="hearts"></div>
+    </div>
 
-      message1.classList.toggle("hide");
-      message2.style.display = "block";
+    <div class="envelope-flap">
+      <svg class="inner">
+        <polygon points="5,0 345,0 175,145"></polygon>
+      </svg>
+      <svg class="outer" id="outer">
+        <polygon points="5,150 345,150 175,0"></polygon>
+      </svg>
+    </div>
 
-      hearts.classList.remove("animated");
-      void hearts.offsetWidth; // restart animation
-      hearts.classList.add("animated");
+    <div class="envelope-base"></div>
+  </div>
+</article>
 
-      if (!opened) {
-        opened = true;
-        window.open("https://litspoloyaps.github.io/prank/");
-      }
+<script>
+  const inner = document.querySelector(".inner");
+  const outer = document.getElementById("outer");
+  const heartBtn = document.getElementById("heart-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const message1 = document.getElementById("message-1");
+  const message2 = document.getElementById("message-2");
+  const hearts = document.getElementById("hearts");
+
+  const sweetWords = [
+    "LOVE LETTER 💌",
+    "YOU ARE SPECIAL ✨",
+    "SO MUCH LOVE 💖",
+    "YOU MAKE ME SMILE 😊",
+    "MY FAVORITE PERSON 💕",
+    "ALWAYS YOU 💞",
+    "SWEET THOUGHTS 💗",
+    "JUST FOR YOU 🌸"
+  ];
+
+  function randomWords() {
+    hearts.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+      const span = document.createElement("span");
+      span.className = "love-text";
+      span.textContent = sweetWords[Math.floor(Math.random() * sweetWords.length)];
+      hearts.appendChild(span);
     }
-  </script>
+  }
+
+  function toggleEnvelope() {
+    inner.classList.toggle("inner-open");
+    outer.classList.toggle("outer-open");
+
+    heartBtn.classList.toggle("hide");
+    closeBtn.classList.toggle("show");
+
+    message1.classList.toggle("hide");
+    message2.style.display = "block";
+
+    randomWords();
+    hearts.classList.remove("animated");
+    void hearts.offsetWidth;
+    hearts.classList.add("animated");
+  }
+</script>
 </body>
 </html>
