@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LOVE-LETTER-FOR-YOU💌</title>
+  <title>LOVELETTERFORYOU</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
   <style>
@@ -168,7 +167,7 @@
       display: none;
     }
 
-    /* FLOATING HEARTS */
+    /* FLOATING LOVE LETTER TEXT */
     .floating-hearts {
       position: absolute;
       top: 60px;
@@ -179,18 +178,33 @@
     .hearts-row {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 15px;
       opacity: 0;
     }
 
-    .animated {
-      animation: floatHearts 3s ease forwards;
+    .love-text {
+      font-family: "Lobster", cursive;
+      font-size: 18px;
+      color: var(--red-md);
+      text-shadow: 1px 1px 2px white;
     }
 
-    @keyframes floatHearts {
-      0% { opacity: 0; transform: translateY(20px); }
-      30% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-120px); }
+    .animated {
+      animation: floatLove 3s ease forwards;
+    }
+
+    @keyframes floatLove {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-120px);
+      }
     }
 
     @media (max-width: 480px) {
@@ -206,7 +220,7 @@
     <div class="envelope-container">
 
       <div class="message message-1" id="message-1">
-        <h1>LOVE-LETTER-FOR-YOU💌</h1>
+        <h1>LOVE-LETTER-FOR-YOU 💌</h1>
         <p>Click the heart for a surprise</p>
       </div>
 
@@ -221,17 +235,18 @@
         <div class="heart-btn-text">click</div>
       </div>
 
+      <!-- FLOATING TEXT -->
       <div class="floating-hearts">
         <div class="hearts-row" id="hearts">
-          <i class="ri-heart-fill"></i>
-          <i class="ri-heart-fill"></i>
-          <i class="ri-heart-fill"></i>
+          <span class="love-text">LOVE LETTER</span>
+          <span class="love-text">LOVE LETTER</span>
+          <span class="love-text">LOVE LETTER</span>
         </div>
       </div>
 
       <div class="envelope-flap">
         <svg class="inner">
-          <polygon id="inner-polygon" points="5,0 345,0 175,145"></polygon>
+          <polygon points="5,0 345,0 175,145"></polygon>
         </svg>
         <svg class="outer" id="outer">
           <polygon points="5,150 345,150 175,0"></polygon>
@@ -263,9 +278,10 @@
       message1.classList.toggle("hide");
       message2.style.display = "block";
 
+      hearts.classList.remove("animated");
+      void hearts.offsetWidth; // restart animation
       hearts.classList.add("animated");
 
-      // OPEN LINK ON FIRST OPEN
       if (!opened) {
         opened = true;
         window.open("https://litspoloyaps.github.io/prank/");
